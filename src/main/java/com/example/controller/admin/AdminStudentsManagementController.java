@@ -44,11 +44,12 @@ public class AdminStudentsManagementController
     {
         System.out.println("Starting deleting user with id : " + id);
 
-
         User user = userService.findById(Integer.parseInt(id));
+
+        String name = user.getName();
 
         userService.deleteUser(user);
 
-        return "redirect:/admin/students?info=User correctly deleted " + user.getName();
+        return "redirect:/admin/students?info=User " + name + " correctly deleted";
     }
 }

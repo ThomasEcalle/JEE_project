@@ -30,16 +30,26 @@
 
     <h1>Students</h1>
 
-    <span th:if="${info != null}" th:utext="${info?}"></span>
+    <div th:if="${info != null}" class="alert alert-success" role="alert">
+        <span  th:utext="${info}"></span>
+    </div>
+
 
     <div class="col-sm-12">
         <table class="table table-hover">
+            <tr>
+                <th>Name</th>
+                <th>Last name</th>
+                <th>Email</th>
+                <th>Modules</th>
+            </tr>
             <tr th:each="student: ${students}">
                 <td th:text="${student.name}"></td>
                 <td th:text="${student.lastName}"></td>
                 <td th:text="${student.email}"></td>
                 <td th:text="${student.modulesAsStudent}"></td>
-                <td><a th:href="@{/admin/students/delete(id=${student.id})}"><i class="material-icons">delete</i></a></td>
+                <td><a th:href="@{/admin/students/delete(id=${student.id})}"><i class="material-icons">delete</i></a>
+                </td>
             </tr>
         </table>
     </div>

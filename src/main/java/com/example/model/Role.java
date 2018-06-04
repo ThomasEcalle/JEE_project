@@ -1,6 +1,8 @@
 package com.example.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "role")
@@ -12,6 +14,14 @@ public class Role
     private int id;
     @Column(name = "role")
     private String role;
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.ALL
+            },
+            mappedBy = "roles")
+    private Set<User> users = new HashSet<>();
+
 
     public Role()
     {
@@ -43,4 +53,13 @@ public class Role
     }
 
 
+    public Set<User> getUsers()
+    {
+        return users;
+    }
+
+    public void setUsers(Set<User> users)
+    {
+        this.users = users;
+    }
 }

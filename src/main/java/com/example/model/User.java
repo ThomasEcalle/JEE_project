@@ -38,13 +38,13 @@ public class User
     private String lastName;
     @Column(name = "active")
     private int active;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany()
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL,
+    @OneToMany(cascade = {CascadeType.ALL},
             fetch = FetchType.LAZY,
-            mappedBy = "teacher")
+            mappedBy = "teacher", orphanRemoval = true)
     private Set<Module> modulesTeached = new HashSet<>();
 
 

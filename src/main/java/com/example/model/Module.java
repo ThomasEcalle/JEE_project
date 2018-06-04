@@ -40,8 +40,7 @@ public final class Module
 
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
-                    CascadeType.ALL,
-                    CascadeType.MERGE
+                    CascadeType.ALL
             },
             mappedBy = "modulesAsStudent")
     private Set<User> students = new HashSet<>();
