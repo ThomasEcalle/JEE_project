@@ -6,13 +6,16 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Transient;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Inheritance
-@DiscriminatorColumn(name = "TYPE")
 public class User
 {
+    public static final String STUDENT = "Student";
+    public static final String ADMIN = "Admin";
+    public static final String TEACHER = "Teacher";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,6 +41,21 @@ public class User
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
+
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "teacher")
+    private Set<Module> modulesTeached = new HashSet<>();
+
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.ALL
+            })
+    @JoinTable(name = "students_modules",
+            joinColumns = {@JoinColumn(name = "student_id", referencedColumnName = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "module_id", referencedColumnName = "id")})
+    private Set<Module> modulesAsStudent = new HashSet<>();
 
     public User()
     {
@@ -100,16 +118,6 @@ public class User
         this.email = email;
     }
 
-    public int getActive()
-    {
-        return active;
-    }
-
-    public void setActive(int active)
-    {
-        this.active = active;
-    }
-
     public Set<Role> getRoles()
     {
         return roles;
@@ -120,4 +128,33 @@ public class User
         this.roles = roles;
     }
 
+    public Set<Module> getModulesTeached()
+    {
+        return modulesTeached;
+    }
+
+    public void setModulesTeached(Set<Module> modulesTeached)
+    {
+        this.modulesTeached = modulesTeached;
+    }
+
+    public Set<Module> getModulesAsStudent()
+    {
+        return modulesAsStudent;
+    }
+
+    public void setModulesAsStudent(Set<Module> modulesAsStudent)
+    {
+        this.modulesAsStudent = modulesAsStudent;
+    }
+
+    public int getActive()
+    {
+        return active;
+    }
+
+    public void setActive(int active)
+    {
+        this.active = active;
+    }
 }

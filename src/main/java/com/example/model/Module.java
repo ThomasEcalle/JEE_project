@@ -1,6 +1,5 @@
 package com.example.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -44,13 +43,13 @@ public final class Module
                     CascadeType.PERSIST,
                     CascadeType.MERGE
             },
-            mappedBy = "modules")
-    private Set<Student> students = new HashSet<>();
+            mappedBy = "modulesAsStudent")
+    private Set<User> students = new HashSet<>();
 
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "teacher_id", nullable = false)
-    private Teacher teacher;
+    private User teacher;
 
 
     public Module()
@@ -102,22 +101,22 @@ public final class Module
         this.updatedAt = updatedAt;
     }
 
-    public Set<Student> getStudents()
+    public Set<User> getStudents()
     {
         return students;
     }
 
-    public void setStudents(Set<Student> students)
+    public void setStudents(Set<User> students)
     {
         this.students = students;
     }
 
-    public Teacher getTeacher()
+    public User getTeacher()
     {
         return teacher;
     }
 
-    public void setTeacher(Teacher teacher)
+    public void setTeacher(User teacher)
     {
         this.teacher = teacher;
     }
