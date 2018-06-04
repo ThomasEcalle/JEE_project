@@ -2,13 +2,21 @@ package com.example.service;
 
 import com.example.model.User;
 
+import java.util.Set;
+
 public interface UserService
 {
-    public User findUserByEmail(String email);
+    User findUserByEmail(String email);
 
-    public void saveStudent(User user);
+    Set<User> findAllByRolesContaining(String rolename);
 
-    public void saveAdmin(User user);
+    User findById(int id);
 
-    public void saveTeacher(User user);
+    void deleteUser(User user);
+
+    void saveStudent(User user);
+
+    void saveAdmin(User user);
+
+    void saveTeacher(User user);
 }

@@ -12,3 +12,8 @@
     font-size: 20px;
     color: #FF1C19;
 }
+
+.myContainer {
+    padding: 50px;
+    background: #2b542c;
+}

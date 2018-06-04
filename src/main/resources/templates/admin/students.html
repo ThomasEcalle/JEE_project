@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Admin Page</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<ul class="nav nav-pills">
+    <li class="nav-item">
+        <a class="nav-link" href="/admin/home">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/admin/createUser">Create User</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="/admin/students">Students</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/logout">Log out</a>
+    </li>
+</ul>
+<div class="container">
+
+    <h1>Students</h1>
+
+    <span th:if="${info != null}" th:utext="${info?}"></span>
+
+    <div class="col-sm-12">
+        <table class="table table-hover">
+            <tr th:each="student: ${students}">
+                <td th:text="${student.name}"></td>
+                <td th:text="${student.lastName}"></td>
+                <td th:text="${student.email}"></td>
+                <td th:text="${student.modulesAsStudent}"></td>
+                <td><a th:href="@{/admin/students/delete(id=${student.id})}"><i class="material-icons">delete</i></a></td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+</body>
+</html>

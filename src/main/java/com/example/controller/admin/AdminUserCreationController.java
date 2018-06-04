@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.example.controller.admin;
 
 import com.example.model.Role;
 import com.example.model.User;
@@ -19,7 +19,7 @@ import java.util.Set;
 
 @Controller
 @RequestMapping("/admin")
-public class AdminController
+public class AdminUserCreationController
 {
 
     @Autowired

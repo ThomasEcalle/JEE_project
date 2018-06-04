@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Set;
 
 @Service("userService")
 public class UserServiceImpl implements UserService
@@ -26,6 +27,24 @@ public class UserServiceImpl implements UserService
     public User findUserByEmail(String email)
     {
         return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public Set<User> findAllByRolesContaining(String rolename)
+    {
+        return userRepository.findAllByRolesContaining(rolename);
+    }
+
+    @Override
+    public User findById(int id)
+    {
+        return userRepository.findById(id);
+    }
+
+    @Override
+    public void deleteUser(User user)
+    {
+        userRepository.delete(user);
     }
 
     @Override

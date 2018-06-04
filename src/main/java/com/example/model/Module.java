@@ -40,7 +40,7 @@ public final class Module
 
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
-                    CascadeType.PERSIST,
+                    CascadeType.ALL,
                     CascadeType.MERGE
             },
             mappedBy = "modulesAsStudent")
@@ -48,8 +48,8 @@ public final class Module
 
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "teacher_id", nullable = false)
-    private User teacher;
+    @JoinColumn(name = "teacher_id", nullable = true)
+    private User teacher = new User();
 
 
     public Module()
