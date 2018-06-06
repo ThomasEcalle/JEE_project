@@ -19,4 +19,6 @@ public interface UserService
     void saveAdmin(User user);
 
     void saveTeacher(User user);
+
+    void saveUser(User user);
 }
