@@ -9,9 +9,20 @@ import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * Handle the connection and tell the url to redirect the user
+ */
 @Component
 public class AuthSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler
 {
+
+    /**
+     * Determine the URL to redirect User
+     *
+     * @param request
+     * @param response
+     * @return String
+     */
     @Override
     protected String determineTargetUrl(HttpServletRequest request, HttpServletResponse response)
     {
@@ -24,13 +35,9 @@ public class AuthSuccessHandler extends SavedRequestAwareAuthenticationSuccessHa
         {
             targetUrl = "/admin/home";
         }
-        else if (role.contains(User.TEACHER))
-        {
-            targetUrl = "/teacher/home";
-        }
         else
         {
-            targetUrl = "/student/home";
+            targetUrl = "/login";
         }
         return targetUrl;
     }

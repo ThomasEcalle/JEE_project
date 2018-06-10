@@ -4,9 +4,13 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Represent a User's Role in Database
+ * A User, for the moment, can only be an Admin, but we can easily add a Role
+ */
 @Entity
 @Table(name = "role")
-public class Role
+public final class Role
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,7 +25,6 @@ public class Role
             },
             mappedBy = "roles")
     private Set<User> users = new HashSet<>();
-
 
     public Role()
     {

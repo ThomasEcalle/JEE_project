@@ -8,6 +8,13 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Set;
 
+/**
+ * Represent the User Repository
+ * The @Repository makes it a bean in order to be used automatically via dependency injection
+ * It has already the basic query methods thanks to JpaRepository
+ * <p>
+ * We just added some methods
+ */
 @Repository("userRepository")
 public interface UserRepository extends JpaRepository<User, Long>
 {

@@ -14,6 +14,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
+/**
+ * Class used in order to configure the application routing
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter
@@ -46,6 +49,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter
                 .passwordEncoder(bCryptPasswordEncoder);
     }
 
+    /**
+     * Method where we specify the url permissions
+     * If a user can or cannot acces to a specific URL depending on his status
+     *
+     * @param http
+     * @throws Exception
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception
     {

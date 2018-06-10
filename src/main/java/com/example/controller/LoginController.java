@@ -11,6 +11,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 
+/**
+ * Controller used to handle User login
+ */
 @Controller
 public class LoginController
 {
@@ -18,6 +21,11 @@ public class LoginController
     @Autowired
     private UserService userService;
 
+    /**
+     * Display the login Page
+     *
+     * @return ModelAndView
+     */
     @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
     public ModelAndView login()
     {
@@ -27,6 +35,11 @@ public class LoginController
     }
 
 
+    /**
+     * Display the registration Page
+     *
+     * @return ModelAndView
+     */
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public ModelAndView registration()
     {
@@ -37,6 +50,13 @@ public class LoginController
         return modelAndView;
     }
 
+    /**
+     * Handle the registration result by displaying errors or adding user in Database
+     *
+     * @param user
+     * @param bindingResult
+     * @return ModelAndView
+     */
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult)
     {
@@ -53,7 +73,7 @@ public class LoginController
         }
         else
         {
-            userService.saveAdmin(user);
+            userService.saveUser(user);
             modelAndView.addObject("successMessage", "User has been registered successfully");
             modelAndView.addObject("user", new User());
             modelAndView.setViewName("registration");

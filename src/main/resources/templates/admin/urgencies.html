@@ -17,10 +17,13 @@
         <a class="nav-link" href="/admin/home">Home</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/admin/createUser">Create User</a>
+        <a class="nav-link" href="/admin/createTask">Create Task</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link active" href="/admin/students">Students</a>
+        <a class="nav-link" href="/admin/tasks">Tasks</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="/admin/urgencies">Urgencies</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="/logout">Log out</a>
@@ -28,28 +31,22 @@
 </ul>
 <div class="container">
 
-    <h1>Students</h1>
-
     <div th:if="${info != null}" class="alert alert-success" role="alert">
         <span th:utext="${info}"></span>
     </div>
 
-
+    <h1>Urgencies !!</h1>
     <div class="col-sm-12">
         <table class="table table-hover">
             <tr>
                 <th>Name</th>
-                <th>Last name</th>
-                <th>Email</th>
-                <th>Modules</th>
+                <th>Priority</th>
             </tr>
-            <tr th:each="student: ${students}">
-                <td th:text="${student.name}"></td>
-                <td th:text="${student.lastName}"></td>
-                <td th:text="${student.email}"></td>
-                <td th:text="${student.modulesAsStudent}"></td>
-                <td><a th:href="@{/admin/students/delete(id=${student.id})}"><i class="material-icons">delete</i></a>
-                <td><a th:href="@{/admin/user/update(id=${student.id})}"><i class="material-icons">edit</i></a>
+            <tr th:each="task: ${tasks}">
+                <td th:text="${task.name}"></td>
+                <td th:text="${task.priority.level}"></td>
+                <td><a th:href="@{/admin/tasks/delete(id=${task.id})}"><i class="material-icons">delete</i></a>
+                <td><a th:href="@{/admin/task/update(id=${task.id})}"><i class="material-icons">edit</i></a>
                 </td>
             </tr>
         </table>

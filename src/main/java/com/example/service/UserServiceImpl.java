@@ -12,6 +12,10 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Implementation of the UserService
+ * The @Service annotation enable it to be used as a Bean
+ */
 @Service("userService")
 public class UserServiceImpl implements UserService
 {
@@ -20,8 +24,6 @@ public class UserServiceImpl implements UserService
     private UserRepository userRepository;
     @Autowired
     private RoleRepository roleRepository;
-    @Autowired
-    private ModuleService moduleService;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -33,9 +35,9 @@ public class UserServiceImpl implements UserService
     }
 
     @Override
-    public Set<User> findAllByRolesContaining(String rolename)
+    public Set<User> findAllByRolesContaining(String roleName)
     {
-        return userRepository.findAllByRolesContaining(rolename);
+        return userRepository.findAllByRolesContaining(roleName);
     }
 
     @Override
@@ -50,18 +52,14 @@ public class UserServiceImpl implements UserService
         userRepository.delete(user);
     }
 
+    /**
+     * For the example, we always save the User with Admin role
+     * But, in the future, we can easily handle different roles
+     *
+     * @param user
+     */
     @Override
-    public void saveStudent(User user)
-    {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setActive(1);
-        Role userRole = roleRepository.findByRole(User.STUDENT);
-        user.setRoles(new HashSet<>(Arrays.asList(userRole)));
-        userRepository.save(user);
-    }
-
-    @Override
-    public void saveAdmin(User user)
+    public void saveUser(User user)
     {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setActive(1);
@@ -71,20 +69,9 @@ public class UserServiceImpl implements UserService
     }
 
     @Override
-    public void saveTeacher(User user)
+    public void updateUser(User user)
     {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setActive(1);
-        Role userRole = roleRepository.findByRole(User.TEACHER);
-        user.setRoles(new HashSet<>(Arrays.asList(userRole)));
         userRepository.save(user);
     }
 
-    @Override
-    public void saveUser(User user)
-    {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setActive(1);
-        userRepository.save(user);
-    }
 }
