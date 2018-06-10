@@ -15,6 +15,8 @@ public interface TaskService
 
     Task findById(int id);
 
+    List<Task> findAllByCreatorSortedByName(int id);
+
     List<Task> findAllByCreator(User creator, Sort sort);
 
     List<Task> findAllByCreator(User creator);

@@ -11,13 +11,11 @@ import java.util.Date;
 
 /**
  * Represent a Task in the Database
- * The @NamedQuery represent a SQL custom query called to get a Task by Creator and priority name
  */
 @Entity
 @Table(name = "task")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, allowGetters = true)
-@NamedQuery(name = "Task.findByPriority", query = "SELECT t FROM Task t WHERE t.creator.id = ?1 AND t.priority.level = ?2")
 public final class Task
 {
 

@@ -32,6 +32,12 @@ public class TaskServiceImpl implements TaskService
     }
 
     @Override
+    public List<Task> findAllByCreatorSortedByName(int id)
+    {
+        return taskRepository.findAllByCreatorSortedByName(id);
+    }
+
+    @Override
     public List<Task> findAllByCreator(User creator, Sort sort)
     {
         return taskRepository.findAllByCreator(creator, sort);

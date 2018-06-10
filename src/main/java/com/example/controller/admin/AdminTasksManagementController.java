@@ -61,7 +61,7 @@ public class AdminTasksManagementController
         {
             if ("name".equals(sort))
             {
-                tasks = taskService.findAllByCreator(user, new Sort(Sort.Direction.ASC, "name"));
+                tasks = taskService.findAllByCreatorSortedByName(user.getId());
             }
             else if ("priority".equals(sort))
             {

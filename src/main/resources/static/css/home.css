@@ -15,4 +15,13 @@
 
 .myContainer {
     padding: 50px;
+    margin-top: 40px;
+}
+
+#priorityValue {
+    margin-top: 20px;
+}
+
+.myTab {
+    margin-top: 15px;
 }
