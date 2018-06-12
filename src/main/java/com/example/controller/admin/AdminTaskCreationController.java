@@ -57,7 +57,7 @@ public class AdminTaskCreationController
      * @return ModelAndView
      */
     @RequestMapping(value = "/createTask", method = RequestMethod.GET)
-    public ModelAndView createUser()
+    public ModelAndView createTask()
     {
         ModelAndView modelAndView = new ModelAndView();
 
@@ -79,7 +79,7 @@ public class AdminTaskCreationController
      * @return ModelAndView
      */
     @RequestMapping(value = "/createTask", method = RequestMethod.POST)
-    public ModelAndView createUser(@Valid Task task, BindingResult bindingResult, String priorityValue)
+    public ModelAndView createTask(@Valid Task task, BindingResult bindingResult, String priorityValue)
     {
         ModelAndView modelAndView = new ModelAndView();
 

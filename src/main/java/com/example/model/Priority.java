@@ -9,7 +9,6 @@ import javax.persistence.*;
  * A priority is associated to a Task
  */
 @Entity
-@EntityListeners(AuditingEntityListener.class)
 public final class Priority
 {
     @Id

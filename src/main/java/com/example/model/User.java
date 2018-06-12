@@ -14,7 +14,6 @@ import java.util.Set;
  * A User has a unique Email Address
  */
 @Entity
-@Inheritance
 public final class User
 {
     public static final String ADMIN = "Admin";

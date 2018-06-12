@@ -48,7 +48,7 @@ public class AdminTasksManagementController
      * @return ModelAndView
      */
     @RequestMapping(value = "/tasks", method = RequestMethod.GET)
-    public ModelAndView home(@RequestParam(name = "sort", required = false) String sort, @RequestParam(name = "info", required = false) String info)
+    public ModelAndView tasks(@RequestParam(name = "sort", required = false) String sort, @RequestParam(name = "info", required = false) String info)
     {
         ModelAndView modelAndView = new ModelAndView();
 
